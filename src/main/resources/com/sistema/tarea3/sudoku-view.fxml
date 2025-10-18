@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane prefHeight="560" prefWidth="720" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.tarea3.SudokuController">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="8.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Sudoku" />
+            </children>
+            <padding><Insets bottom="0" left="10" right="10" top="10" /></padding>
+        </HBox>
+    </top>
+
+    <center>
+        <!-- Se rellenará por código con 81 TextFields -->
+        <GridPane fx:id="gridSudoku" hgap="2.0" vgap="2.0" BorderPane.alignment="CENTER">
+            <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
+        </GridPane>
+    </center>
+
+    <bottom>
+        <BorderPane>
+            <left>
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <children>
+                        <Button fx:id="btnLimpiar" onAction="#limpiar" text="Limpiar" />
+                        <Button fx:id="btnValidar" onAction="#validar" text="Validar" />
+                        <Button fx:id="btnResolver" onAction="#resolver" text="Resolver" />
+                        <Button fx:id="btnCargarEjemplo" onAction="#cargarEjemplo" text="Pistas" />
+                    </children>
+                    <padding><Insets bottom="10" left="0" right="10" top="10" /></padding>
+                </HBox>
+            </left>
+            <padding><Insets bottom="10" left="10" right="10" top="0" /></padding>
+         <right>
+                <Label fx:id="lblEstado" style="-fx-text-fill: -fx-text-base-color;" text="Listo." wrapText="true" BorderPane.alignment="CENTER" />
+         </right>
+        </BorderPane>
+    </bottom>
+</BorderPane>
