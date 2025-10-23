@@ -3,44 +3,75 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="560" prefWidth="720" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.tarea3.SudokuController">
+<BorderPane prefHeight="640" prefWidth="800" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistema.tarea3.SudokuController">
     <top>
-        <HBox alignment="CENTER_LEFT" spacing="8.0" BorderPane.alignment="CENTER">
+        <VBox style="-fx-background-color: linear-gradient(to bottom, #2c3e50, #34495e);">
             <children>
-                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Sudoku" />
+                <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="800.0" spacing="15.0">
+                    <children>
+                        <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 2, 0, 0, 1);" text="Sudoku" />
+                    </children>
+                    <padding><Insets bottom="15" left="20" right="20" top="15" /></padding>
+                </HBox>
+                <Separator style="-fx-background-color: rgba(255,255,255,0.1);" />
             </children>
-            <padding><Insets bottom="0" left="10" right="10" top="10" /></padding>
-        </HBox>
+        </VBox>
     </top>
 
     <center>
-        <!-- Se rellenará por código con 81 TextFields -->
-        <GridPane fx:id="gridSudoku" hgap="2.0" vgap="2.0" BorderPane.alignment="CENTER">
-            <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
-        </GridPane>
+        <StackPane style="-fx-background-color: #f5f5f5;">
+            <children>
+                <VBox alignment="CENTER" spacing="15.0">
+                    <children>
+                        <!-- Contenedor con sombra para el grid -->
+                        <StackPane style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 15, 0, 0, 3);">
+                            <children>
+                                <GridPane fx:id="gridSudoku" hgap="2.0" style="-fx-background-color: #34495e; -fx-background-radius: 10;" vgap="2.0">
+                                    <padding><Insets bottom="15" left="15" right="15" top="15" /></padding>
+                                </GridPane>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="10" />
+                            </VBox.margin>
+                        </StackPane>
+
+                        <!-- Etiqueta de estado con diseño mejorado -->
+                        <HBox alignment="CENTER" maxWidth="600" spacing="8.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);">
+                            <children>
+                                <Label style="-fx-font-size: 13px; -fx-text-fill: #7f8c8d; -fx-font-weight: 600;" text="Estado:" />
+                                <Label fx:id="lblEstado" style="-fx-font-size: 13px; -fx-text-fill: #2c3e50;" text="Listo para comenzar" wrapText="true" />
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding><Insets bottom="15" left="20" right="20" top="15" /></padding>
+                </VBox>
+            </children>
+        </StackPane>
     </center>
 
     <bottom>
-        <BorderPane>
-            <left>
-                <HBox alignment="CENTER_LEFT" spacing="10">
+        <VBox style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1 0 0 0;">
+            <children>
+                <HBox alignment="CENTER" spacing="12.0">
                     <children>
-                        <Button fx:id="btnLimpiar" onAction="#limpiar" text="Limpiar" />
-                        <Button fx:id="btnValidar" onAction="#validar" text="Validar" />
-                        <Button fx:id="btnResolver" onAction="#resolver" text="Resolver" />
-                        <Button fx:id="btnCargarEjemplo" onAction="#cargarEjemplo" text="Pistas" />
+                        <Button fx:id="btnLimpiar" onAction="#limpiar" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 600; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 10 20 10 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 2);" text="🗑 Limpiar" />
+
+                        <Button fx:id="btnValidar" onAction="#validar" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 600; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 10 20 10 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 2);" text="✓ Validar" />
+
+                        <Button fx:id="btnResolver" onAction="#resolver" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 600; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 10 20 10 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 2);" text="⚡ Resolver" />
+
+                        <Button fx:id="btnCargarEjemplo" onAction="#pistas" style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 600; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 10 20 10 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 2);" text="💡 Pistas" />
                     </children>
-                    <padding><Insets bottom="10" left="0" right="10" top="10" /></padding>
+                    <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
                 </HBox>
-            </left>
-            <padding><Insets bottom="10" left="10" right="10" top="0" /></padding>
-         <right>
-                <Label fx:id="lblEstado" style="-fx-text-fill: -fx-text-base-color;" text="Listo." wrapText="true" BorderPane.alignment="CENTER" />
-         </right>
-        </BorderPane>
+            </children>
+        </VBox>
     </bottom>
 </BorderPane>

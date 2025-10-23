@@ -19,7 +19,6 @@ import java.util.function.UnaryOperator;
 
 
 public class SudokuController implements Initializable {
-
     @FXML private GridPane gridSudoku;
     @FXML private Button btnLimpiar;
     @FXML private Button btnValidar;
@@ -150,7 +149,7 @@ public class SudokuController implements Initializable {
     }
 
     @FXML
-    private void cargarEjemplo() {
+    private void pistas() {
         int[][] ejemplo = {
                 {5,3,0, 0,7,0, 0,0,0},
                 {6,0,0, 1,9,5, 0,0,0},
