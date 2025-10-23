@@ -71,7 +71,6 @@ public class SudokuController implements Initializable {
             }
         });
 
-        // Estilo base
         tf.setStyle("-fx-background-color: white; -fx-alignment: center; -fx-font-size: 18px; -fx-border-color: #b0b0b0; -fx-border-width: 1;");
         return tf;
     }
@@ -138,7 +137,7 @@ public class SudokuController implements Initializable {
         }
 
         int[][] copia = Tablero.copiar(t.matriz());
-        boolean ok = SudokuSolver.resolver(copia);
+        boolean ok = SudokuLogica.resolver(copia);
 
         if (ok) {
             pintarSolucion(t.matriz(), copia);

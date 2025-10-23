@@ -1,17 +1,17 @@
 package com.sistema.tarea3;
 
-public class SudokuSolver {
+public class SudokuLogica {
 
-    public static boolean resolver(int[][] board) {
-        int[] empty = encontrarVacio(board);
+    public static boolean resolver(int[][] t) {
+        int[] empty = encontrarVacio(t);
         if (empty == null) return true;
 
         int r = empty[0], c = empty[1];
         for (int v = 1; v <= 9; v++) {
-            if (SudokuValidator.esSeguro(board, r, c, v)) {
-                board[r][c] = v;
-                if (resolver(board)) return true;
-                board[r][c] = 0; // backtrack
+            if (SudokuValidator.esSeguro(t, r, c, v)) {
+                t[r][c] = v;
+                if (resolver(t)) return true;
+                t[r][c] = 0;
             }
         }
         return false;

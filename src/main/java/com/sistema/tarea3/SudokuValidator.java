@@ -11,7 +11,6 @@ public class SudokuValidator {
                 if (board[r][c] < 0 || board[r][c] > 9)
                     return "Error: solo se permiten números 1–9 (o vacío).";
 
-        // Filas
         for (int r = 0; r < 9; r++) {
             boolean[] seen = new boolean[10];
             for (int c = 0; c < 9; c++) {
@@ -31,7 +30,6 @@ public class SudokuValidator {
                 seen[v] = true;
             }
         }
-        // Subcuadros 3x3
         for (int br = 0; br < 9; br += 3) {
             for (int bc = 0; bc < 9; bc += 3) {
                 boolean[] seen = new boolean[10];
@@ -48,7 +46,6 @@ public class SudokuValidator {
         return null;
     }
 
-    /** Regla de colocación segura para el backtracking. */
     public static boolean esSeguro(int[][] board, int row, int col, int val) {
         for (int c = 0; c < 9; c++) if (board[row][c] == val) return false; // fila
         for (int r = 0; r < 9; r++) if (board[r][col] == val) return false; // columna
