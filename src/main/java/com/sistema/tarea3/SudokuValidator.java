@@ -2,15 +2,18 @@ package com.sistema.tarea3;
 
 public class SudokuValidator {
 
+    /** Devuelve null si todo ok; si hay error, un mensaje explicando el problema. */
     public static String validacionInicial(int[][] board) {
         if (board == null || board.length != 9) return "Tablero inválido (dimensión).";
         for (int i = 0; i < 9; i++) if (board[i] == null || board[i].length != 9) return "Tablero inválido (dimensión).";
 
+        // Solo 0 o 1..9
         for (int r = 0; r < 9; r++)
             for (int c = 0; c < 9; c++)
                 if (board[r][c] < 0 || board[r][c] > 9)
                     return "Error: solo se permiten números 1–9 (o vacío).";
 
+        // Filas
         for (int r = 0; r < 9; r++) {
             boolean[] seen = new boolean[10];
             for (int c = 0; c < 9; c++) {
@@ -30,6 +33,7 @@ public class SudokuValidator {
                 seen[v] = true;
             }
         }
+        // Subcuadros 3x3
         for (int br = 0; br < 9; br += 3) {
             for (int bc = 0; bc < 9; bc += 3) {
                 boolean[] seen = new boolean[10];
@@ -49,7 +53,7 @@ public class SudokuValidator {
     public static boolean esSeguro(int[][] board, int row, int col, int val) {
         for (int c = 0; c < 9; c++) if (board[row][c] == val) return false; // fila
         for (int r = 0; r < 9; r++) if (board[r][col] == val) return false; // columna
-        int br = (row / 3) * 3, bc = (col / 3) * 3;                         // subcuadro
+        int br = (row / 3) * 3, bc = (col / 3) * 3;                         // bloque
         for (int r = 0; r < 3; r++)
             for (int c = 0; c < 3; c++)
                 if (board[br + r][bc + c] == val) return false;
