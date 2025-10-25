@@ -1,19 +1,15 @@
 package com.sistema.tarea3;
 
 public class Nodo {
-    // Decisión aplicada en este nodo (para la raíz no aplicamos ninguna asignación)
     public final int fila;
     public final int col;
-    public final int valor; // 0 en la raíz (sin decisión)
+    public final int valor;
 
-    // Estado del tablero en este punto de la búsqueda (9x9)
     public final int[][] estado;
 
-    // Siguiente hueco a resolver desde este estado (o -1,-1 si ya no hay)
     public final int filaSgte;
     public final int colSgte;
 
-    // Relación padre (útil si quieres reconstruir el camino de decisiones)
     public final Nodo padre;
 
     public Nodo(Nodo padre, int[][] origen, int fila, int col, int valor) {
@@ -23,12 +19,10 @@ public class Nodo {
         this.valor = valor;
         this.estado = copiar(origen);
 
-        // Aplica la decisión si hay valor > 0
         if (fila >= 0 && col >= 0 && valor > 0) {
             this.estado[fila][col] = valor;
         }
 
-        // Calcula siguiente hueco vacío
         int[] nxt = encontrarVacio(this.estado);
         if (nxt == null) {
             this.filaSgte = -1;
@@ -45,10 +39,8 @@ public class Nodo {
 
     public int[] candidatos() {
         if (esMeta()) {
-            // sin próximos candidatos; devolver arreglo vacío
             return new int[0];
         }
-        // máximo 9 candidatos
         int[] tmp = new int[9];
         int count = 0;
         for (int v = 1; v <= 9; v++) {
@@ -62,12 +54,9 @@ public class Nodo {
         return res;
     }
 
-    //Crea hijo aplicando "valor v" en la siguiente celda vacía.
     public Nodo crearHijo(int v) {
         return new Nodo(this, this.estado, this.filaSgte, this.colSgte, v);
     }
-
-    // ==== utilidades internas (sin Arrays/externos) ====
 
     private static int[][] copiar(int[][] m) {
         int[][] r = new int[9][9];
