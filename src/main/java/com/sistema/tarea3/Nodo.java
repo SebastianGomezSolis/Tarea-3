@@ -44,7 +44,7 @@ public class Nodo {
         int[] tmp = new int[9];
         int count = 0;
         for (int v = 1; v <= 9; v++) {
-            if (SudokuValidator.esSeguro(estado, filaSgte, colSgte, v)) {
+            if (SudokuValidador.esSeguro(estado, filaSgte, colSgte, v)) {
                 tmp[count++] = v;
             }
         }

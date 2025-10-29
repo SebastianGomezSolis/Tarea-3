@@ -2,7 +2,7 @@ package com.sistema.tarea3;
 
 public class SudokuLogica {
     public static boolean resolver(int[][] board) {
-        String msg = SudokuValidator.validacionInicial(board);
+        String msg = SudokuValidador.validacionInicial(board);
         if (msg != null) {
             return false;
         }

@@ -1,6 +1,6 @@
 package com.sistema.tarea3;
 
-public class SudokuValidator {
+public class SudokuValidador {
     public static String validacionInicial(int[][] board) {
         if (board == null || board.length != 9) return "Tablero inválido (dimensión).";
         for (int i = 0; i < 9; i++) if (board[i] == null || board[i].length != 9) return "Tablero inválido (dimensión).";

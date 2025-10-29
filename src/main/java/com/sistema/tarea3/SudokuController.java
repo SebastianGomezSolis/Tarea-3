@@ -118,7 +118,7 @@ public class SudokuController implements Initializable {
     @FXML
     private void validar() {
         Tablero t = leerDesdeUI();
-        String msg = SudokuValidator.validacionInicial(t.matriz());
+        String msg = SudokuValidador.validacionInicial(t.matriz());
         if (msg == null) {
             lblEstado.setText("Tablero inicial válido.");
         } else {
@@ -130,7 +130,7 @@ public class SudokuController implements Initializable {
     private void resolver() {
         Tablero t = leerDesdeUI();
 
-        String msg = SudokuValidator.validacionInicial(t.matriz());
+        String msg = SudokuValidador.validacionInicial(t.matriz());
         if (msg != null) {
             lblEstado.setText(msg);
             return;
