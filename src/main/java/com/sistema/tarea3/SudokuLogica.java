@@ -1,8 +1,71 @@
 package com.sistema.tarea3;
 
 public class SudokuLogica {
+    public static String validacionInicial(int[][] board) {
+        if (board == null || board.length != 9) return "Tablero inválido (dimensión).";
+        for (int i = 0; i < 9; i++) if (board[i] == null || board[i].length != 9) return "Tablero inválido (dimensión).";
+
+        for (int r = 0; r < 9; r++)
+            for (int c = 0; c < 9; c++)
+                if (board[r][c] < 0 || board[r][c] > 9)
+                    return "Error: solo se permiten números 1–9 (o vacío).";
+
+        for (int r = 0; r < 9; r++) {
+            boolean[] seen = new boolean[10];
+            for (int c = 0; c < 9; c++) {
+                int v = board[r][c];
+                if (v == 0) continue;
+                if (seen[v]) return "Repetición en fila " + (r + 1) + ".";
+                seen[v] = true;
+            }
+        }
+
+        for (int c = 0; c < 9; c++) {
+            boolean[] seen = new boolean[10];
+            for (int r = 0; r < 9; r++) {
+                int v = board[r][c];
+                if (v == 0) continue;
+                if (seen[v]) return "Repetición en columna " + (c + 1) + ".";
+                seen[v] = true;
+            }
+        }
+
+        for (int br = 0; br < 9; br += 3) {
+            for (int bc = 0; bc < 9; bc += 3) {
+                boolean[] seen = new boolean[10];
+                for (int r = 0; r < 3; r++) {
+                    for (int c = 0; c < 3; c++) {
+                        int v = board[br + r][bc + c];
+                        if (v == 0) continue;
+                        if (seen[v]) return "Repetición en subcuadro (" + (br/3 + 1) + "," + (bc/3 + 1) + ").";
+                        seen[v] = true;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public static boolean esSeguro(int[][] board, int row, int col, int val) {
+        for (int c = 0; c < 9; c++) if (board[row][c] == val) return false;
+        for (int r = 0; r < 9; r++) if (board[r][col] == val) return false;
+        int br = (row / 3) * 3, bc = (col / 3) * 3;
+        for (int r = 0; r < 3; r++)
+            for (int c = 0; c < 3; c++)
+                if (board[br + r][bc + c] == val) return false;
+        return true;
+    }
+
+    private static void copiarEn(int[][] destino, int[][] fuente) {
+        for (int i = 0; i < 9; i++)
+            for (int j = 0; j < 9; j++)
+                destino[i][j] = fuente[i][j];
+    }
+
+    private static Nodo nodoSolucion = null;
+
     public static boolean resolver(int[][] board) {
-        String msg = SudokuValidador.validacionInicial(board);
+        String msg = validacionInicial(board);
         if (msg != null) {
             return false;
         }
@@ -15,37 +78,22 @@ public class SudokuLogica {
         }
 
         boolean resuelto = dfs(raiz);
-
         if (resuelto) {
             copiarEn(board, nodoSolucion.estado);
         }
         return resuelto;
     }
 
-    private static Nodo nodoSolucion = null;
-
     private static boolean dfs(Nodo nodo) {
         if (nodo.esMeta()) {
             nodoSolucion = nodo;
             return true;
         }
-
         int[] cand = nodo.candidatos();
-
-        for (int i = 0; i < cand.length; i++) {
-            int v = cand[i];
+        for (int v : cand) {
             Nodo hijo = nodo.crearHijo(v);
-            if (dfs(hijo)) {
-                return true; // propaga éxito
-            }
-
+            if (dfs(hijo)) return true;
         }
         return false;
-    }
-
-    private static void copiarEn(int[][] destino, int[][] fuente) {
-        for (int i = 0; i < 9; i++)
-            for (int j = 0; j < 9; j++)
-                destino[i][j] = fuente[i][j];
     }
 }
