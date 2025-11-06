@@ -23,18 +23,18 @@ public class SudokuController implements Initializable {
     @FXML private Button btnLimpiar;
     @FXML private Button btnValidar;
     @FXML private Button btnResolver;
-    @FXML private Button btnCargarEjemplo;
+    @FXML private Button btnPistas;
     @FXML private Label lblEstado;
 
     private final TextField[][] celdas = new TextField[9][9];
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        construirGrilla();
+        construir();
         lblEstado.setText("Listo.");
     }
 
-    private void construirGrilla() {
+    private void construir() {
         gridSudoku.getChildren().clear();
         gridSudoku.setAlignment(Pos.CENTER);
 

@@ -41,14 +41,15 @@ public class Nodo {
         if (esMeta()) {
             return new int[0];
         }
+
         int[] tmp = new int[9];
         int count = 0;
         for (int v = 1; v <= 9; v++) {
-            if (SudokuValidador.esSeguro(estado, filaSgte, colSgte, v)) {
+            if (SudokuLogica.esSeguro(estado, filaSgte, colSgte, v)) {
                 tmp[count++] = v;
             }
         }
-        // compactar a tamaño count
+
         int[] res = new int[count];
         for (int i = 0; i < count; i++) res[i] = tmp[i];
         return res;
