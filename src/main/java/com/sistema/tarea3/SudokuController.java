@@ -31,6 +31,7 @@ public class SudokuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         construir();
+        pistas();
         lblEstado.setText("Listo.");
     }
 
@@ -120,10 +121,26 @@ public class SudokuController implements Initializable {
         Tablero t = leerDesdeUI();
         String msg = SudokuLogica.validacionInicial(t.matriz());
         if (msg == null) {
-            lblEstado.setText("Tablero inicial válido.");
+            // Verificar si el tablero está completo
+            if (tableroCompleto(t.matriz())) {
+                lblEstado.setText("¡Felicidades! ¡Solución correcta!");
+            } else {
+                lblEstado.setText("Tablero inicial válido.");
+            }
         } else {
             lblEstado.setText(msg);
         }
+    }
+
+    private boolean tableroCompleto(int[][] matriz) {
+        for (int r = 0; r < 9; r++) {
+            for (int c = 0; c < 9; c++) {
+                if (matriz[r][c] == 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @FXML
@@ -147,7 +164,6 @@ public class SudokuController implements Initializable {
         }
     }
 
-    @FXML
     private void pistas() {
         int[][] ejemplo = {
                 {5,3,0, 0,7,0, 0,0,0},
@@ -208,4 +224,3 @@ public class SudokuController implements Initializable {
         }
     }
 }
-

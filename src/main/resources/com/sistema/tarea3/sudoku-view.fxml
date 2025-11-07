@@ -66,8 +66,6 @@
                         <Button fx:id="btnValidar" onAction="#validar" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 600; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 10 20 10 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 2);" text="✓ Validar" />
 
                         <Button fx:id="btnResolver" onAction="#resolver" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 600; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 10 20 10 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 2);" text="⚡ Resolver" />
-
-                        <Button fx:id="btnPistas" onAction="#pistas" style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: 600; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 10 20 10 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 2);" text="💡 Pistas" />
                     </children>
                     <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
                 </HBox>
